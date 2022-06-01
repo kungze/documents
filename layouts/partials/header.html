@@ -23,6 +23,17 @@
     {{- partial "favicon.html" . }}
     {{- partial "stylesheet.html" . }}
     {{- partial "custom-header.html" . }}
+    <style>
+      pre code {
+        background-color: inherit;
+        color: inherit;
+        border: 0;
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        white-space: pre;
+      }
+    </style>
   </head>
   <body class="mobile-support{{ if eq (.Scratch.Get "relearnOutputFormat") "PRINT" }} print{{ end }}" data-url="{{ .RelPermalink }}">
     <div id="body" class="default-animation">

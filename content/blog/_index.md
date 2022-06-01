@@ -1,4 +1,4 @@
 ---
-"title": "WIKI"
+"title": "博文"
 "weight": 2
 ---

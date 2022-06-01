@@ -68,11 +68,3 @@ title = "Kungze 文档"
     # if in doubt, remove this line
     unsafe = true
 
-# allows `hugo server` to display this showcase in IE11; this is used for testing, as we
-# are still supporting IE11 - although with degraded experience; if you don't care about
-# `hugo server` or browsers of ancient times, fell free to remove this whole block
-[server]
-  [[server.headers]]
-    for = "**.html"
-    [server.headers.values]
-       X-UA-Compatible = "IE=edge"

@@ -39,8 +39,19 @@ Check the Secret:
 * memcached https://github.com/bitnami/charts/tree/master/bitnami/memcached
 * nginx-ingress-controller https://github.com/bitnami/charts/tree/master/bitnami/nginx-ingress-controller
 
+默认情况下，openstack-dep 会部署 ceph 相关的 configmap。该 configmap 主要存储 ceph 集群的 endpoint 信息，通过指定的 `ceph.cephClusterNamespace` 和 `ceph.cephClusterName` 参数来同步 ceph 集群中 endpoint 配置。 为 cinder, glance 等需要使用 ceph 存储的服务，提供 ceph 集群的 endpoint 配置。由于该操作是公共的一次性操作，所以在 openstack-dep 中运行。
+
 ```shell
-helm -n openstack install openstack-dependency kolla-helm/openstack-dep
+helm -n openstack install openstack-dependency kolla-helm/openstack-dep \
+    --set ceph.cephClusterNamespace=rook-ceph \
+    --set ceph.cephClusterName=rook-ceph
+```
+
+这里推荐使用 ceph 做为存储后端，所以默认环境中 `ceph.enabled` 参数为 true，即默认环境中部署了ceph。 若环境中未部署 ceph，可通过增加 `ceph.enabled=false` 同时去除 `ceph.cephClusterNamespace` 和 `ceph.cephClusterName` 参数来跳过这一步骤。
+
+```shell
+helm -n openstack install openstack-dependency kolla-helm/openstack-dep \
+    --set ceph.enabled=false
 ```
 
 默认情况下 openstack-dep 会创建一个名称为 ``openstack`` NodePort 的 service 向外部暴露 ingerss，设置 ``externalService.type`` 为
@@ -54,3 +65,4 @@ watch -n 1 kubectl -n openstack get pods -l app.kubernetes.io/instance=openstack
 ```
 
 等待所有的 pod 都 ready 后，安装 openstack keystone。
+

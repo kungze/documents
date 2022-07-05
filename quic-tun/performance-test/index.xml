@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>性能测试报告 on Kungze 文档</title><link>https://kungze.github.io/documents/quic-tun/performance-test/</link><description>Recent content in 性能测试报告 on Kungze 文档</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://kungze.github.io/documents/quic-tun/performance-test/index.xml" rel="self" type="application/rss+xml"/><item><title>带宽和CPU使用率</title><link>https://kungze.github.io/documents/quic-tun/performance-test/bandwidth-and-cpu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kungze.github.io/documents/quic-tun/performance-test/bandwidth-and-cpu/</guid><description>准备工作 在 server 虚机
+启动 iperf3 server
+$ iperf3 -s ----------------------------------------------------------- Server listening on 5201 ----------------------------------------------------------- 打开一个新的终端，启动该 quictun-server
+$ ./quictun-server I0624 09:15:29.223140 1515 server.go:30] &amp;#34;Server endpoint start up successful&amp;#34; listen address=&amp;#34;[::]:7500&amp;#34; 在 client 虚机
+启动 quictun-server
+$ ./quictun-client --server-endpoint 192.168.26.129:7500 --token-source tcp:127.0.0.1:5201 --insecure-skip-verify true I0624 09:17:30.926905 1679 client.go:35] &amp;#34;Client endpoint start up successful&amp;#34; listen address=&amp;#34;127.0.0.1:6500&amp;#34; 上面的 192.168.26.129 是 server 虚机的 IP 地址。
+打开一个新的终端，执行 iperf3 -c 开始测试</description></item><item><title>网络延迟</title><link>https://kungze.github.io/documents/quic-tun/performance-test/network-latency/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kungze.github.io/documents/quic-tun/performance-test/network-latency/</guid><description>在这个测试场景中，我们将额外测试公网环境下，quic-tun 对网络延迟的影响。 测试工具是 我们针对这个场景专门编写的。
+准备工作 在 server 虚机
+启动 TCP server
+$ ./server The server listen on 0.0.0.0:15676 打开一个新的终端，启动 quictun-server
+$ ./quictun-server I0624 09:15:29.223140 1515 server.go:30] &amp;#34;Server endpoint start up successful&amp;#34; listen address=&amp;#34;[::]:7500&amp;#34; 在 client 虚机
+启动 quictun-client
+$ ./quictun-client --server-endpoint 192.168.26.129:7500 --token-source tcp:127.0.0.1:5201 --insecure-skip-verify true I0624 09:17:30.926905 1679 client.go:35] &amp;#34;Client endpoint start up successful&amp;#34; listen address=&amp;#34;127.0.0.1:6500&amp;#34; 192.168.26.129 是 server 虚机的 IP 地址，在公网场景，这个就是公网 IP。
+打开一个新的终端，运行 client python 脚本测试网络延迟</description></item></channel></rss>

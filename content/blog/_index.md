@@ -1,4 +1,4 @@
 ---
 "title": "博文"
-"weight": 2
+"weight": 20
 ---

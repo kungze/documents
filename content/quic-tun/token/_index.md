@@ -23,7 +23,7 @@ token 的获取工作是在`quictun-client`中完成的，在 `quictun-client` �
 示例：
 
 ```console
-./quictun-client --listen-on tcp:127.0.0.1:6500 --server-endpoint 172.18.31.36:7500 --token-source-plugin Fixed --token-source tcp:172.18.30.117:22 --insecure-skip-verify True
+./quictun-client --listen-on tcp:127.0.0.1:6500 --server-endpoint 172.18.31.36:7500 --token-source-plugin Fixed --token-source tcp:172.18.30.117:22
 ```
 
 **注意：**`Fixed` 是 `quictun-clint` 默认的 token source plugin，如果你不知道则默认使用这个 plugin。
@@ -48,7 +48,7 @@ token 的获取工作是在`quictun-client`中完成的，在 `quictun-client` �
 示例：
 
 ```console
-./quictun-client --insecure-skip-verify --server-endpoint 127.0.0.1:7500 --token-source-plugin File --token-source /etc/quictun/tokenfile --listen-on tcp:172.18.31.36:6622
+./quictun-client --server-endpoint 127.0.0.1:7500 --token-source-plugin File --token-source /etc/quictun/tokenfile --listen-on tcp:172.18.31.36:6622
 ```
 
 这里 `--token-source` 就用于指定存放 token 的外部文件的路径。
@@ -74,7 +74,7 @@ token 的解析是在 `quictun-server` 中完成的，`quictun-server` 的两个
 必须是经过 base64 编码的：
 
 ```console
-./quictun-client --listen-on tcp:127.0.0.1:6500 --server-endpoint 172.18.31.36:7500 --token-source-plugin Fixed --token-source dGNwOjE3Mi4xOC4zMC4xMTc6MjI= --insecure-skip-verify True
+./quictun-client --listen-on tcp:127.0.0.1:6500 --server-endpoint 172.18.31.36:7500 --token-source-plugin Fixed --token-source dGNwOjE3Mi4xOC4zMC4xMTc6MjI=
 ```
 
 注意上面的 `--token-source` 参数 `dGNwOjE3Mi4xOC4zMC4xMTc6MjI=` 就是 `tcp:172.18.30.117:22` 经过 base64 编码之后生成的字符串。

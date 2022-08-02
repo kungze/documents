@@ -12,10 +12,9 @@ SSL（安全套接字层）在 TCP 协议中是可选的，但是 QUIC 协议中
   要是为 `quictun-client` 的公钥签名的证书
 * `--cert-file` 指定证书文件（经过 CA 签名的公钥）
 * `--key-file` 指定私钥文件
-* `--verify-client` 这个参数是 `quictun-server` 特有的，用于指定 `quictun-server` 是否验证 `quictun-client`，如果该值为 True，那
-  么 `quictun-client` 启动时必须有 `--cert-file` 和 `--key-file` 参数。
-* `--insecure-skip-verify` 这个参数是 `quictun-client` 特有的，用于指定是否验证 `quictun-server` 的证书，这个值为 False 时表明需要
-  验证 `quictun-server` 的证书，这时候 `quictun-client` 的 `--ca-file` 参数是必须要传的。
+* `--verify-remote-endpoint` 
+  - 该参数在 `quictun-server` 端用于指定是否验证 `quictun-client`，当 `quictun-server` 配置该参数时, 那么 `quictun-client` 启动时必须有`--cert-file` 和 `--key-file` 参数。
+  - 该参数在 `quictun-client` 端用于指定是否验证 `quictun-server` 的证书，当 `quictun-client` 配置该参时，表明需要验证 `quictun-server` 的证书，这时候 `quictun-client` 的 `--ca-file` 参数是必须要传的。
 
 QUIC 协议中加密是强制要求的，但是认证是可选的。而加密工作依赖于服务端的的私钥和证书，在 quic-tun 中指定私钥和证书的参数分别
 是 `--key-file` 和 `--cert-file`。如果在启动 `quictun-server` 是不指定这两个参数，`quictun-server` 会自动创建一个临时的

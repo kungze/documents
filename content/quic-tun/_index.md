@@ -49,7 +49,7 @@ tar xvfz quic-tun_0.0.2_linux_amd64.tar.gz
 启动客户端程序
 
 ```console
-./quictun-client --listen-on tcp:127.0.0.1:6500 --server-endpoint 172.18.31.36:7500 --token-source tcp:172.18.30.117:22 --insecure-skip-verify True
+./quictun-client --listen-on tcp:127.0.0.1:6500 --server-endpoint 172.18.31.36:7500 --token-source tcp:172.18.30.117:22
 ```
 
 **注意**：上面参数 `--token-source` 指定一个 token，这个 token 用于告诉 server 端客户端应用程序想要连接到那个应用程序。后面我们会有更多关于 token 的解释。
